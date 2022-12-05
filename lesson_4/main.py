@@ -78,20 +78,14 @@ for i in range(0, len(pol1_list)):
 pol.extend(pol_red)
 pol.sort(reverse=True, key=mySort)
 for idx in range(0, len(pol)):
-    if idx < len(pol) - 1:
-        if pol[idx][1] > 1:
-            pol_sum.write(f'{pol[idx][0]}*x^{pol[idx][1]} + ')
-        elif pol[idx][1] == 1:
-            pol_sum.write(f'{pol[idx][0]}*x + ')
-        else:
-            pol_sum.write(f'{pol[idx][0]} + ')
+    if pol[idx][1] > 1:
+        pol_sum.write(f'{pol[idx][0]}*x^{pol[idx][1]}')
+    elif pol[idx][1] == 1:
+        pol_sum.write(f'{pol[idx][0]}*x')
     else:
-        if pol[idx][1] > 1:
-            pol_sum.write(f'{pol[idx][0]}*x^{pol[idx][1]}')
-        elif pol[idx][1] == 1:
-            pol_sum.write(f'{pol[idx][0]}*x')
-        else:
-            pol_sum.write(f'{pol[idx][0]}')
+        pol_sum.write(f'{pol[idx][0]}')
+    if idx < len(pol) - 1:
+        pol_sum.write(' + ')
 pol_sum.write(' = 0')
 pol1.close()
 pol2.close()
