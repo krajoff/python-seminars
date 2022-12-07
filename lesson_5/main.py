@@ -8,7 +8,6 @@ text = 'Однажды, в студёную зимнюю пору Я абв из
 new_text = ' '.join(filter(lambda i: 'a' not in i and 'б' not in i and 'в' not in i, text.split()))
 print(new_text)
 
-exit()
 # 40. Создайте программу для игры в ""Крестики-нолики"".
 def check_end_game(fld: list) -> bool:
     for i in range(0, 3):
