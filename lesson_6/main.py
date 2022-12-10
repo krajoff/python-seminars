@@ -45,17 +45,12 @@ def compress(instr: str):
         while idx < len(instr) - 1:
             if instr[idx] == instr[idx + 1]:
                 cnt += 1
-                if idx == len(instr) - 2:
-                    res += instr[idx] if cnt == 1 else instr[idx] + str(cnt)
-                    cnt = 1
             else:
                 res += instr[idx] if cnt == 1 else instr[idx] + str(cnt)
                 cnt = 1
-                if idx == len(instr) - 2:
-                    res += instr[idx + 1] if cnt == 1 else instr[idx + 1] + str(cnt)
             idx += 1
+        else:
+            res += str(cnt) + instr[idx]
         return res
-
-
 print('Задача 2:\nВходная строка: ' f'{string}')
 print('Результат: ' + compress(string) + '\n')
