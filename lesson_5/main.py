@@ -9,37 +9,37 @@ new_text = ' '.join(filter(lambda i: 'a' not in i and 'б' not in i and 'в' not
 print(new_text)
 
 # 40. Создайте программу для игры в ""Крестики-нолики"".
-def check_end_game(fld: list) -> bool:
-    for i in range(0, 3):
-        if fld[0][i] == fld[1][i] == fld[2][i] in ['0', 'X'] or \
-                fld[i][0] == fld[i][1] == fld[i][2] in ['0', 'X']:
-            print('Победа!')
-            return True
-    if fld[0][0] == fld[1][1] == fld[2][2] in ['0', 'X'] or \
-            fld[0][2] == fld[1][1] == fld[2][0] in ['0', 'X']:
-        print('Победа!')
-        return True
-    else:
-        return False
-
-print('Поле крестиков-ноликов - это поле 3х3: _ - это пустота, 0 - ноли, Х - крестик')
-tic_tac_toe = [['_', '_', '_'] for _ in range(0, 3)]
-OX = {0: '0', 1: 'X'}
-end_game = False
-cnt = 0
-anq = True
-while not end_game:
-    while anq:
-        cdt = list(map(int, input(f'Введите координаты {OX[cnt]} через пробел: ').split()))
-        if tic_tac_toe[cdt[0]][cdt[1]] == '_':
-            tic_tac_toe[cdt[0]][cdt[1]] = OX[cnt]
-            break
-        else:
-            print('Данное место уже занято!')
-    for i in range(0, 3):
-        print(tic_tac_toe[i])
-    end_game = check_end_game(tic_tac_toe)
-    cnt = 1 if cnt == 0 else 0
+# def check_end_game(fld: list) -> bool:
+#     for i in range(0, 3):
+#         if fld[0][i] == fld[1][i] == fld[2][i] in ['0', 'X'] or \
+#                 fld[i][0] == fld[i][1] == fld[i][2] in ['0', 'X']:
+#             print('Победа!')
+#             return True
+#     if fld[0][0] == fld[1][1] == fld[2][2] in ['0', 'X'] or \
+#             fld[0][2] == fld[1][1] == fld[2][0] in ['0', 'X']:
+#         print('Победа!')
+#         return True
+#     else:
+#         return False
+#
+# print('Поле крестиков-ноликов - это поле 3х3: _ - это пустота, 0 - ноли, Х - крестик')
+# tic_tac_toe = [['_', '_', '_'] for _ in range(0, 3)]
+# OX = {0: '0', 1: 'X'}
+# end_game = False
+# cnt = 0
+# anq = True
+# while not end_game:
+#     while anq:
+#         cdt = list(map(int, input(f'Введите координаты {OX[cnt]} через пробел: ').split()))
+#         if tic_tac_toe[cdt[0]][cdt[1]] == '_':
+#             tic_tac_toe[cdt[0]][cdt[1]] = OX[cnt]
+#             break
+#         else:
+#             print('Данное место уже занято!')
+#     for i in range(0, 3):
+#         print(tic_tac_toe[i])
+#     end_game = check_end_game(tic_tac_toe)
+#     cnt = 1 if cnt == 0 else 0
 
 
 # 41. Реализуйте RLE алгоритм: реализуйте модуль сжатия и восстановления данных.
