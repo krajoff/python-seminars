@@ -1,8 +1,8 @@
-import logger as lg
 import telebot
 from config import TOKEN
 bot = telebot.TeleBot(TOKEN)
-
+from datetime import datetime as dt
+from datetime import date
 
 """Command START"""
 
@@ -25,13 +25,16 @@ def get_message(message):
     elif msg_list[0] == '/s':
         if msg_list[1]:
             export_db(msg_list[1], message)
+            logger(f'Выполнен поиск по фамилии: {msg_list[1]}')
         else:
             bot.send_message(message.chat.id, 'Фамилия не введена. Повторите ввод ещё раз.')
     elif msg == 'Добавить запись в БД':
-        bot.send_message(message.chat.id, 'Для добавления введите форму вида"/d Яшин Николай Константинович 7-999-531-666"')
+        bot.send_message(message.chat.id, 'Для добавления введите форму вида "/d Яшин Николай Константинович 7-999-531-666"')
     elif msg_list[0] == '/d':
         if msg_list[1:]:
-            import_db(' '.join(msg_list[1:]), message)
+            data = ' '.join(msg_list[1:])
+            import_db(data, message)
+            logger(f'Выполнена новая запить: {data}')
         else:
             bot.send_message(message.chat.id, 'Данные не введены. Повторите ввод ещё раз.')
     else:
@@ -56,6 +59,13 @@ def import_db(db, message):
             bot.send_message(message.chat.id, 'Запись успешно добавлена')
     else:
         bot.send_message(message.chat.id, 'Введеные данные некорректны.')
+
+
+def logger(data):
+    time = dt.now().strftime('%H:%M')
+    day = date.today().strftime('%d/%m/%y')
+    with open('log.csv', 'a') as file:
+        file.write('{} {} {}\n'.format(day, time, data))
 
 
 bot.polling(none_stop=True)
